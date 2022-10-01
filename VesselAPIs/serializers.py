@@ -1,8 +1,14 @@
 from rest_framework import serializers
-from .models import Post
+from .models import Vessel, Voyage
 
-class PostSerializer(serializers.ModelSerializer):
+class VesselSerializer(serializers.ModelSerializer):
 
     class Meta:
-        fields = ('id', 'author', 'title', 'body', 'created_at', 'updated_at')
-        model = Post
+        fields = '__all__'
+        model = Vessel
+
+class VoyageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        fields = ('name', 'vessel', 'transit_time_in_hour')
+        model = Voyage
