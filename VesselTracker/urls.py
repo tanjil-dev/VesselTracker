@@ -5,5 +5,6 @@ from VesselAPIs.views import index
 urlpatterns = [
     path('api/v1/', include('VesselAPIs.urls')),
     path('admin/', admin.site.urls),
-    path("", index, name="index"),
+    path("myapp/", include("VesselAPIs.urls")),
+    path("", include("VesselAPIs.urls")),
 ]

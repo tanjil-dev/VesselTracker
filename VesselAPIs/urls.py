@@ -2,6 +2,7 @@ from django.urls import path
 from VesselAPIs.views import *
 
 urlpatterns = [
+    path("", index, name="index"),
     path('vessel/<int:pk>/', VesselDetail.as_view(), name='vessel-list-update-delete'),
     path('vessel/', VesselList.as_view(), name='vessel-list-create'),
     path('voyage/<int:pk>/', VoyageDetail.as_view(), name='voyage-list-update-delete'),
