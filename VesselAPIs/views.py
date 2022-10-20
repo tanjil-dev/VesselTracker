@@ -2,6 +2,7 @@ import os
 import pandas as pd
 from VesselTracker.settings import BASE_DIR
 from django.http import HttpResponse
+from django.shortcuts import render
 from rest_framework import generics
 from .models import Vessel, Voyage
 from .serializers import VesselSerializer, VoyageSerializer
@@ -38,3 +39,6 @@ def data_upload(request):
         vessels.append(vessel)
     Vessel.objects.bulk_create(vessels)
     return HttpResponse('Excel data uploaded Suceesfully!')
+
+def index(request):
+    return render(request, "vessel/home.html")
