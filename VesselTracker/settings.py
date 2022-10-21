@@ -1,15 +1,28 @@
 import os
+from dotenv import load_dotenv
 
 from pathlib import Path
 from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure--q&w4pj80p0g9zlk(ao_+79xe9@4m1cm^y=p=av(zg3hpp!_cm'
+env_path = os.path.join(os.path.dirname(__file__), '.env')
 
-DEBUG = True
+try:
+    load_dotenv(dotenv_path=env_path, verbose=True, override=True, encoding='utf_8')
+except UserWarning:
+    raise ImproperlyConfigured('.env file not found. Did you forget to add one?')
 
-ALLOWED_HOSTS = ["54.65.135.99"]
+# SECRET_KEY = 'django-insecure--q&w4pj80p0g9zlk(ao_+79xe9@4m1cm^y=p=av(zg3hpp!_cm'
+try:
+    SECRET_KEY = os.getenv("SECRET_KEY")
+except KeyError as e:
+    raise RuntimeError("Could not find a SECRET_KEY in environment") from e
+
+DEBUG = os.getenv('DEBUG')
+
+ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS')]
+
 
 
 INSTALLED_APPS = [
