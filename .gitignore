@@ -16,6 +16,7 @@ dist/
 *.ini
 */media/
 .fuse_hidden*
+VesselTracker/.env
 .env
 .env_docker
 *.zip
