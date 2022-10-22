@@ -1,22 +1,28 @@
 import os
+from dotenv import load_dotenv
 
 from pathlib import Path
-from dotenv import load_dotenv
 from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+
+env_path = os.path.join(os.path.dirname(__file__), '.env')
 
 try:
-    load_dotenv(dotenv_path, verbose=True, override=True, encoding='utf_8')
+    load_dotenv(dotenv_path=env_path, verbose=True, override=True, encoding='utf_8')
 except UserWarning:
-    raise ImproperlyConfigured('.env file not found. Did you forget to get one?')
+    raise ImproperlyConfigured('.env file not found. Did you forget to add one?')
 
-SECRET_KEY = 'django-insecure--q&w4pj80p0g9zlk(ao_+79xe9@4m1cm^y=p=av(zg3hpp!_cm'
+# SECRET_KEY = 'django-insecure--q&w4pj80p0g9zlk(ao_+79xe9@4m1cm^y=p=av(zg3hpp!_cm'
+try:
+    SECRET_KEY = os.getenv("SECRET_KEY")
+except KeyError as e:
+    raise RuntimeError("Could not find a SECRET_KEY in environment") from e
 
-DEBUG = True
+DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS')]
+
 
 
 INSTALLED_APPS = [
@@ -27,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+
 
     #app_name
     'VesselAPIs',
@@ -69,12 +76,8 @@ WSGI_APPLICATION = 'VesselTracker.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DEFAULT_DB_NAME'),
-        'USER': os.getenv('DEFAULT_DB_USER'),
-        'PASSWORD': os.getenv('DEFAULT_DB_PASSWORD'),
-        'HOST': os.getenv('DEFAULT_DB_HOST'),
-        'PORT': os.getenv('DEFAULT_DB_PORT'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'vessel-tracker',
     }
 }
 
@@ -100,7 +103,9 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
-    ]
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100,
 }
 
 
@@ -122,6 +127,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.getenv("STATIC_ROOT")
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
