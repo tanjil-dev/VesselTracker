@@ -13,7 +13,6 @@ try:
 except UserWarning:
     raise ImproperlyConfigured('.env file not found. Did you forget to add one?')
 
-# SECRET_KEY = 'django-insecure--q&w4pj80p0g9zlk(ao_+79xe9@4m1cm^y=p=av(zg3hpp!_cm'
 try:
     SECRET_KEY = os.getenv("SECRET_KEY")
 except KeyError as e:
@@ -76,8 +75,12 @@ WSGI_APPLICATION = 'VesselTracker.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'vessel-tracker',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DEFAULT_DB_NAME'),
+        'HOST': os.environ.get('DEFAULT_DB_HOST'),
+        'USER': os.environ.get('DEFAULT_DB_USER'),
+        'PASSWORD': os.environ.get('DEFAULT_DB_PASSWORD'),
+        'PORT': os.environ.get('DEFAULT_DB_PORT')
     }
 }
 
