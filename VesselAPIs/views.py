@@ -30,11 +30,10 @@ class VoyageDetail(generics.RetrieveUpdateDestroyAPIView):
 
 def data_upload(request):
     vessels = []
-    excel_dir = os.path.join(BASE_DIR,'Data/senpaku_n.xlsx')
+    excel_dir = os.path.join(os.getenviron('STATIC_ROOT'),'/senpaku_n.xlsx')
     all_sheets_df = pd.read_excel(excel_dir, sheet_name=None, engine='openpyxl')
     df = pd.concat(all_sheets_df[frame] for frame in all_sheets_df.keys())
     for d in df.values:
-
         vessel = Vessel(name=d[1], owner_id=d[3], naccs_code=d[2], latest_update_user=d[4])
         vessels.append(vessel)
     Vessel.objects.bulk_create(vessels)
