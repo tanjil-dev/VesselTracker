@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Vessel, Voyage
+from .models import *
 
 class VesselSerializer(serializers.ModelSerializer):
 
@@ -10,5 +10,17 @@ class VesselSerializer(serializers.ModelSerializer):
 class VoyageSerializer(serializers.ModelSerializer):
 
     class Meta:
-        fields = ('name', 'vessel', 'transit_time_in_hour')
+        fields = '__all__'
         model = Voyage
+
+class ParcelSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        fields = '__all__'
+        model = Parcel
+
+class NotificationSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        fields = '__all__'
+        model = Notification
