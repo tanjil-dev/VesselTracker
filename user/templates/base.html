@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vessel Tracker</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/logo.png' %}" style="height: 10px; weight: 10px;" />
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+{% include "nav.html" %}
+{% block content %}<h1>Hello World!</h1>{% endblock content %}
+{% include 'footer.html' %}
+</body>
+</html>
