@@ -1,0 +1,28 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FAE392;">
+    <a class=" navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" style="width:30px; height:30px"
+        alt="My image"/></a>
+    <button class="navbar-toggler collapsed btn btn-info" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="{% url 'home' %}">ToDo App <span class="sr-only">(current)</span></a>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="navbar-nav ml-auto">
+            <div class="dropdown">
+                <button class="btn btn-outline-info dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    {{request.user}}</a>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</nav>

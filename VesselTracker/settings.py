@@ -31,8 +31,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'user.apps.UserConfig',
+    'VesselAPIs.apps.VesselapisConfig',
     'rest_framework',
-    'VesselAPIs',
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -50,7 +52,7 @@ ROOT_URLCONF = 'VesselTracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [BASE_DIR / 'user/templates']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
