@@ -1,0 +1,7 @@
+footer {
+  background: rgb(39,53,150);
+  margin-top: auto;
+}
+footer .p-3{
+    color: grey;
+}
