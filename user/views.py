@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout
 from user.forms import *
 
-
+@login_required(login_url='login')
 def Home(request):
     template = 'base.html'
     context = {}
