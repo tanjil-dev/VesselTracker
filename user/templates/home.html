@@ -1,4 +1,57 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Welcome, {{ request.user }}</h1>
+
+<!-- Main Content -->
+<div class="container my-5">
+    <div class="row">
+        <!-- Blog Post -->
+        <div class="col-lg-8 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Blog Post Title</h2>
+                    <p class="card-text"><small class="text-muted">Published on January 1, 2024 by John Doe</small></p>
+                    <p class="card-text">This is the content of the blog post. Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit. Integer posuere erat a ante.</p>
+                    <p class="card-text">More content here... Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Integer posuere erat a ante.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Search</h5>
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <button class="btn btn-primary" type="button">Go!</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Categories</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="#">Category 1</a></li>
+                        <li><a href="#">Category 2</a></li>
+                        <li><a href="#">Category 3</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Recent Voyages</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="#">Post 1</a></li>
+                        <li><a href="#">Post 2</a></li>
+                        <li><a href="#">Post 3</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
