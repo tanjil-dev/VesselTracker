@@ -1,7 +1,29 @@
 {% load static %}
+<style>
+    .dropdown-menu {
+        max-height: 300px;
+        overflow-y: auto;
+        .notification-icon {
+            position: relative;
+        }
+        .notification-badge {
+            position: absolute;
+            top: 0;
+            right: -10px;
+            padding: 0.25em 0.5em;
+            border-radius: 50%;
+            background: red;
+            color: white;
+            font-size: 1.75em;
+        }
+    .icon-red{
+    color
+    }
+</style>
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FAE392;">
-    <a class=" navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" style="width:50px; height:50px"
-        alt="My image"/></a>
+    <a class=" navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}"
+                                                          style="width:50px; height:50px"
+                                                          alt="My image"/></a>
     <button class="navbar-toggler collapsed btn btn-info" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -9,7 +31,35 @@
     </button>
     <div class="navbar-collapse collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="{% url 'home' %}">Vessel Tracker <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="{% url 'home' %}">Vessel Tracker <span
+                    class="sr-only">(current)</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle notification-icon" href="#" id="notificationDropdown"
+                       role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-lg fa-bell icon-red"></i> <!-- Notification Icon -->
+                        <span class="notification-badge">5</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdown">
+                        <li class="dropdown-header">Notifications</li>
+                        <li><a class="dropdown-item" href="#">Message 1</a></li>
+                        <li><a class="dropdown-item" href="#">Message 2</a></li>
+                        <li><a class="dropdown-item" href="#">Message 3</a></li>
+                        <li><a class="dropdown-item" href="#">Message 4</a></li>
+                        <li><a class="dropdown-item" href="#">Message 5</a></li>
+                        <li><a class="dropdown-item" href="#">Message 6</a></li>
+                        <li><a class="dropdown-item" href="#">Message 7</a></li>
+                        <li><a class="dropdown-item" href="#">Message 8</a></li>
+                        <li><a class="dropdown-item" href="#">Message 9</a></li>
+                        <li><a class="dropdown-item" href="#">Message 10</a></li>
+                        <li><a class="dropdown-item" href="#">Message 11</a></li>
+                        <li><a class="dropdown-item" href="#">Message 12</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
         {% if user.is_authenticated %}
         <div class="navbar-nav ml-auto">
@@ -18,7 +68,7 @@
                         data-bs-toggle="dropdown" aria-expanded="false">
                     {{request.user}}</a>
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
                 </ul>
             </div>

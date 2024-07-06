@@ -6,7 +6,7 @@ from user.forms import *
 
 @login_required(login_url='login')
 def Home(request):
-    template = 'base.html'
+    template = 'home.html'
     context = {}
     return render(request, template_name=template, context=context)
 
