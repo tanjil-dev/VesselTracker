@@ -20,3 +20,5 @@ VesselTracker/.env
 .env
 .env_docker
 *.zip
+.zed/
+.vscode/
