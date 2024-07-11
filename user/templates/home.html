@@ -6,16 +6,16 @@
     <div class="row">
         <!-- Blog Post -->
         <div class="col-lg-8 mb-4">
+            {% for d in data1 %}
             <div class="card">
                 <div class="card-body">
-                    <h2 class="card-title">Blog Post Title</h2>
-                    <p class="card-text"><small class="text-muted">Published on January 1, 2024 by John Doe</small></p>
-                    <p class="card-text">This is the content of the blog post. Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit. Integer posuere erat a ante.</p>
-                    <p class="card-text">More content here... Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Integer posuere erat a ante.</p>
+                    <h2 class="card-title">{{ d.vessel }}</h2>
+                    <p class="card-text"><small class="text-muted">Departure date {{ d.start_time }} / Arrival date {{ d.end_time }}</small></p>
+                    <h4 class="card-text">Departure Location: {{ d.start_location }}</h4>
+                    <h4 class="card-text">Arrival Location: {{ d.end_location }}</h4>
                 </div>
-            </div>
+            </div><br>
+            {% endfor %}
         </div>
 
         <!-- Sidebar -->
