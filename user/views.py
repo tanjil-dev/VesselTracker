@@ -2,12 +2,16 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout
+from VesselAPIs.models import *
 from user.forms import *
 
 @login_required(login_url='login')
 def Home(request):
+    voyage = Voyage.objects.all().order_by('-id')
     template = 'home.html'
-    context = {}
+    context = {
+        'data1': voyage,
+    }
     return render(request, template_name=template, context=context)
 
 def Login(request):
