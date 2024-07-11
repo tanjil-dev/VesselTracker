@@ -14,6 +14,24 @@ def Home(request):
     }
     return render(request, template_name=template, context=context)
 
+@login_required(login_url='login')
+def VesselView(request):
+    vessel = Vessel.objects.all().order_by('-id')
+    template = 'home.html'
+    context = {
+        'data2': vessel,
+    }
+    return render(request, template_name=template, context=context)
+
+@login_required(login_url='login')
+def VesselDetails(request, id):
+    vessel = Vessel.objects.get(id=id)
+    template = 'home.html'
+    context = {
+        'data2': vessel,
+    }
+    return render(request, template_name=template, context=context)
+
 def Login(request):
     if request.user.is_authenticated:
         return redirect('home')
