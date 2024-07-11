@@ -6,16 +6,29 @@
     <div class="row">
         <!-- Blog Post -->
         <div class="col-lg-8 mb-4">
+            {% if data1 %}
             {% for d in data1 %}
             <div class="card">
-                <div class="card-body">
+                <div id="myCard" class="card-body">
                     <h2 class="card-title">{{ d.vessel }}</h2>
                     <p class="card-text"><small class="text-muted">Departure date {{ d.start_time }} / Arrival date {{ d.end_time }}</small></p>
-                    <h4 class="card-text">Departure Location: {{ d.start_location }}</h4>
-                    <h4 class="card-text">Arrival Location: {{ d.end_location }}</h4>
+                    <h4 class="card-text">Departure Location: <small class="text-primary">{{ d.start_location }}</small></h4>
+                    <h4 class="card-text">Arrival Location: <small class="text-primary">{{ d.end_location }}</small>    </h4>
                 </div>
             </div><br>
             {% endfor %}
+            {% else %}
+            {% for d in data2 %}
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">{{ d.name }}</h2>
+                    <p class="card-text"><small class="text-muted">Last update date {{ d.updated_at }}</small></p>
+                    <h4 class="card-text">Owner ID: <small class="text-primary">{{ d.owner_id }}</small></h4>
+                    <h4 class="card-text">NACCS CODE: <small class="text-primary">{{ d.naccs_code }}</small></h4>
+                </div>
+            </div><br>
+            {% endfor %}
+            {% endif %}
         </div>
 
         <!-- Sidebar -->
@@ -26,7 +39,6 @@
                     <form>
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search for...">
-                            <button class="btn btn-primary" type="button">Go!</button>
                         </div>
                     </form>
                 </div>
@@ -35,19 +47,28 @@
                 <div class="card-body">
                     <h5 class="card-title">Categories</h5>
                     <ul class="list-unstyled mb-0">
-                        <li><a href="#">Vessels</a></li>
-                        <li><a href="#">Voyages</a></li>
+                        <li><a href="{% url 'vessel' %}">Vessels</a></li>
+                        <li><a href="{% url 'home' %}">Voyages</a></li>
                     </ul>
                 </div>
             </div>
             <div class="card mb-4">
                 <div class="card-body">
+                    {% if data1 %}
                     <h5 class="card-title">Recent Voyages</h5>
                     <ul class="list-unstyled mb-0">
-                        <li><a href="#">Post 1</a></li>
-                        <li><a href="#">Post 2</a></li>
-                        <li><a href="#">Post 3</a></li>
+                        {% for d in data1|slice:":3" %}
+                        <li><a href="#">{{ d.vessel }}</a></li>
+                        {% endfor %}
                     </ul>
+                    {% else %}
+                    <h5 class="card-title">Recent Vessel</h5>
+                    <ul class="list-unstyled mb-0">
+                        {% for d in data2|slice:":3" %}
+                        <li><a href="#">{{ d.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
                 </div>
             </div>
         </div>
