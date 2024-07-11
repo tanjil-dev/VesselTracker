@@ -9,11 +9,11 @@
             {% if data1 %}
             {% for d in data1 %}
             <div class="card">
-                <div id="myCard" class="card-body">
+                <div class="card-body">
                     <h2 class="card-title">{{ d.vessel }}</h2>
                     <p class="card-text"><small class="text-muted">Departure date {{ d.start_time }} / Arrival date {{ d.end_time }}</small></p>
                     <h4 class="card-text">Departure Location: <small class="text-primary">{{ d.start_location }}</small></h4>
-                    <h4 class="card-text">Arrival Location: <small class="text-primary">{{ d.end_location }}</small>    </h4>
+                    <h4 class="card-text">Arrival Location: <small class="text-primary">{{ d.end_location }}</small></h4>
                 </div>
             </div><br>
             {% endfor %}
@@ -35,12 +35,25 @@
         <div class="col-lg-4">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">Search</h5>
-                    <form>
+                    {% if data1 %}
+                    <h5 class="card-title">Search Voyage</h5>
+                    <form method="post" action="{% url 'home' %}">
+                        {% csrf_token %}
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
+                            <input type="text" class="form-control" name="search" placeholder="Search for...">
+                            <button class="btn btn-primary" type="submit">Go!</button>
                         </div>
                     </form>
+                    {% else %}
+                    <h5 class="card-title">Search Vessel</h5>
+                    <form method="post" action="{% url 'vessel' %}">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="search" placeholder="Search for...">
+                            <button class="btn btn-primary" type="submit">Go!</button>
+                        </div>
+                    </form>
+                    {% endif %}
                 </div>
             </div>
             <div class="card mb-4">
@@ -50,25 +63,6 @@
                         <li><a href="{% url 'vessel' %}">Vessels</a></li>
                         <li><a href="{% url 'home' %}">Voyages</a></li>
                     </ul>
-                </div>
-            </div>
-            <div class="card mb-4">
-                <div class="card-body">
-                    {% if data1 %}
-                    <h5 class="card-title">Recent Voyages</h5>
-                    <ul class="list-unstyled mb-0">
-                        {% for d in data1|slice:":3" %}
-                        <li><a href="#">{{ d.vessel }}</a></li>
-                        {% endfor %}
-                    </ul>
-                    {% else %}
-                    <h5 class="card-title">Recent Vessel</h5>
-                    <ul class="list-unstyled mb-0">
-                        {% for d in data2|slice:":3" %}
-                        <li><a href="#">{{ d.name }}</a></li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
                 </div>
             </div>
         </div>

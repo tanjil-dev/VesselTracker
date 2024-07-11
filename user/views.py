@@ -1,27 +1,42 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.views import View
 from django.contrib.auth import authenticate, login as auth_login, logout
 from VesselAPIs.models import *
 from user.forms import *
 
-@login_required(login_url='login')
-def Home(request):
-    voyage = Voyage.objects.all().order_by('-id')
+class Home(View):
     template = 'home.html'
-    context = {
-        'data1': voyage,
-    }
-    return render(request, template_name=template, context=context)
+    data = None
+    def get(self, request):
+        self.data = Voyage.objects.all().order_by('-id')
+        context = {
+            'data1': self.data,
+        }
+        return render(request, template_name=self.template, context=context)
+    def post(self, request):
+        self.data = Voyage.objects.filter(vessel__name__contains=request.POST['search']).order_by('-id')
+        context = {
+            'data1': self.data,
+        }
+        return render(request, template_name=self.template, context=context)
 
-@login_required(login_url='login')
-def VesselView(request):
-    vessel = Vessel.objects.all().order_by('-id')
+class VesselView(View):
     template = 'home.html'
-    context = {
-        'data2': vessel,
-    }
-    return render(request, template_name=template, context=context)
+    data = None
+    def get(self, request):
+        self.data = Vessel.objects.all().order_by('-id')
+        context = {
+            'data2': self.data,
+        }
+        return render(request, template_name=self.template, context=context)
+    def post(self, request):
+        self.data = Vessel.objects.filter(name__contains=request.POST['search'])
+        context = {
+            'data2': self.data,
+        }
+        return render(request, template_name=self.template, context=context)
 
 @login_required(login_url='login')
 def VesselDetails(request, id):
