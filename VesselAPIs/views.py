@@ -32,13 +32,3 @@ class ParcelList(generics.ListCreateAPIView):
 class ParcelDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Parcel.objects.all()
     serializer_class = ParcelSerializer
-
-class NotificationlList(generics.ListCreateAPIView):
-    queryset = Notification.objects.all()
-    serializer_class = NotificationSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['title', 'message']
-
-class NotificationDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Notification.objects.all()
-    serializer_class = NotificationSerializer
