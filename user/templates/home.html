@@ -1,36 +1,40 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!-- Main Content -->
-<div class="container my-5">
-    <div class="row">
-        <!-- Blog Post -->
-        <div class="col-lg-8 mb-4">
-            {% if data1 %}
-            {% for d in data1 %}
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="card-title">{{ d.vessel }}</h2>
-                    <p class="card-text"><small class="text-muted">Departure date {{ d.start_time }} / Arrival date {{ d.end_time }}</small></p>
-                    <h4 class="card-text">Departure Location: <small class="text-primary">{{ d.start_location }}</small></h4>
-                    <h4 class="card-text">Arrival Location: <small class="text-primary">{{ d.end_location }}</small></h4>
-                </div>
-            </div><br>
-            {% endfor %}
-            {% else %}
-            {% for d in data2 %}
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="card-title">{{ d.name }}</h2>
-                    <p class="card-text"><small class="text-muted">Last update date {{ d.updated_at }}</small></p>
-                    <h4 class="card-text">Owner ID: <small class="text-primary">{{ d.owner_id }}</small></h4>
-                    <h4 class="card-text">NACCS CODE: <small class="text-primary">{{ d.naccs_code }}</small></h4>
-                </div>
-            </div><br>
-            {% endfor %}
-            {% endif %}
+<br>
+<div class="container">
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        {% if data1 %}
+        {% for d in data1 %}
+        <div class="card card-profile">
+            <div class="card-body">
+                <h2 class="card-title">{{ d.vessel }}</h2>
+                <p class="card-text"><small class="text-muted">Departure date {{ d.start_time }} / Arrival date {{ d.end_time }}</small></p>
+                <h4 class="card-text">Departure Location: <small class="text-primary">{{ d.start_location }}</small>
+                </h4>
+                <h4 class="card-text">Arrival Location: <small class="text-primary">{{ d.end_location }}</small></h4>
+            </div>
         </div>
-
+        <br>
+        {% endfor %}
+        {% else %}
+        {% for d in data2 %}
+        <div class="card card-profile">
+            <div class="card-body">
+                <h2 class="card-title">{{ d.name }}</h2>
+                <p class="card-text"><small class="text-muted">Last update date {{ d.updated_at }}</small></p>
+                <h4 class="card-text">Owner ID: <small class="text-primary">{{ d.owner_id }}</small></h4>
+                <h4 class="card-text">NACCS CODE: <small class="text-primary">{{ d.naccs_code }}</small></h4>
+            </div>
+        </div>
+        <br>
+        {% endfor %}
+        {% endif %}
     </div>
+    </div>
+
 </div>
+
+
 {% endblock content %}

@@ -78,6 +78,7 @@ def Signup(request):
 def LogoutUser(request):
     if request.user.is_authenticated:
         logout(request)
+        messages.success(request, 'You are logged out!')
         return redirect('login')
 
 

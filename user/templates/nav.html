@@ -1,8 +1,6 @@
 {% load static %}
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FAE392;">
-    <a class=" navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}"
-                                                          style="width:45px; height:45px"
-                                                          alt="My image"/></a>
+    <a class=" navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" style="width:45px; height:45px" alt="My image"/></a>
     <button class="navbar-toggler collapsed btn btn-info" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -10,11 +8,11 @@
     </button>
     <div class="navbar-collapse collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="{% url 'home' %}">Vessel Tracker <span
-                    class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="{% url 'home' %}">Vessel Tracker</a>
         </div>
-        {% if user.is_authenticated %}
-        <div class="navbar-nav ml-auto">
+
+        <div class="navbar-nav ms-auto">
+            {% if user.is_authenticated %}
             <div class="dropdown">
                 <button class="btn btn-outline-info dropdown-toggle" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -25,7 +23,9 @@
                     <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
                 </ul>
             </div>
+            {% else %}
+            <a class="nav-item nav-link btn btn-outline-info my-2 my-sm-0" href="{% url 'login' %}">Login</a>
+            {% endif %}
         </div>
-        {% endif %}
     </div>
 </nav>
