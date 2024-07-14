@@ -31,41 +31,6 @@
             {% endif %}
         </div>
 
-        <!-- Sidebar -->
-        <div class="col-lg-4">
-            <div class="card mb-4">
-                <div class="card-body">
-                    {% if data1 %}
-                    <h5 class="card-title">Search Voyage</h5>
-                    <form method="post" action="{% url 'home' %}">
-                        {% csrf_token %}
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="search" placeholder="Search for...">
-                            <button class="btn btn-primary" type="submit">Go!</button>
-                        </div>
-                    </form>
-                    {% else %}
-                    <h5 class="card-title">Search Vessel</h5>
-                    <form method="post" action="{% url 'vessel' %}">
-                        {% csrf_token %}
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="search" placeholder="Search for...">
-                            <button class="btn btn-primary" type="submit">Go!</button>
-                        </div>
-                    </form>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">Categories</h5>
-                    <ul class="list-unstyled mb-0">
-                        <li><a href="{% url 'vessel' %}">Vessels</a></li>
-                        <li><a href="{% url 'home' %}">Voyages</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 {% endblock content %}

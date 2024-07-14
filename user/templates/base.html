@@ -19,7 +19,15 @@
 </head>
 <body>
 {% include "nav.html" %}
-{% block content %}<h1>Hello World!</h1>{% endblock content %}
+<br>
+<main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {% block content %}{% endblock %}
+        </div>
+        {% include 'sidebar.html' %}
+      </div>
+    </main>
 {% include 'footer.html' %}
 </body>
 </html>
