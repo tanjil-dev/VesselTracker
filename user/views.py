@@ -38,15 +38,6 @@ class VesselView(View):
         }
         return render(request, template_name=self.template, context=context)
 
-@login_required(login_url='login')
-def VesselDetails(request, id):
-    vessel = Vessel.objects.get(id=id)
-    template = 'home.html'
-    context = {
-        'data2': vessel,
-    }
-    return render(request, template_name=template, context=context)
-
 def Login(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -88,3 +79,13 @@ def LogoutUser(request):
     if request.user.is_authenticated:
         logout(request)
         return redirect('login')
+
+
+def profile(request):
+    user_form = UserUpdateForm()
+    profile_form = ProfileUpdateForm()
+    context = {
+        'form1': user_form,
+        'form2': profile_form
+    }
+    return render(request, template_name='profile.html', context=context)
