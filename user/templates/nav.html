@@ -1,6 +1,6 @@
 {% load static %}
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FAE392;">
-    <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" style="width:45px; height:45px" alt="My image"/></a>
+    <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" style="width:55px; height:55px" alt="My image"/></a>
     <button class="navbar-toggler collapsed btn btn-info" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -8,9 +8,11 @@
     </button>
     <div class="navbar-collapse collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="{% url 'home' %}">Vessel Tracker</a>
+            <a class="nav-item nav-link btn btn-outline-info my-2 my-sm-0" href="{% url 'home' %}">Voyages</a>
         </div>
-
+        <div class="navbar-nav">
+            <a class="nav-item nav-link btn btn-outline-info my-2 my-sm-0" href="{% url 'vessel' %}">Vessels</a>
+        </div>
         <div class="navbar-nav ms-auto nav1">
             {% if user.is_authenticated %}
             <div class="dropdown">
