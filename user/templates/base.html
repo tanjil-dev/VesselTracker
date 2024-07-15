@@ -3,16 +3,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Vessel Tracker</title>
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/logo.png' %}" style="height: 10px; weight: 10px;"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDO</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/logo.png' %}" style="height: 10px; weight: 10px;" />
     {% load bootstrap5 %}
     {% bootstrap_css %}
+    {% bootstrap_javascript %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
+
+
 <body>
 {% include "nav.html" %}
-{% block content %}{% endblock %}
+{% block content %}{% endblock content %}
+<script src="{% static 'api_call.js' %}"></script>
 {% include 'footer.html' %}
-{% bootstrap_javascript %}
 </body>
 </html>
