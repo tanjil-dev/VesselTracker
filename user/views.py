@@ -81,7 +81,7 @@ def LogoutUser(request):
         messages.success(request, 'You are logged out!')
         return redirect('login')
 
-
+@login_required(login_url='login')
 def profile(request):
     user_form = UserUpdateForm()
     profile_form = ProfileUpdateForm()
