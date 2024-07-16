@@ -8,10 +8,10 @@
     </button>
     <div class="navbar-collapse collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link btn btn-outline-warning active my-2 my-sm-0" href="{% url 'home' %}">Voyages</a>
+            <a class="nav-item nav-link btn btn-outline-warning my-2 my-sm-0" href="{% url 'home' %}">Voyages</a>
         </div>
         <div class="navbar-nav">
-            <a class="nav-item nav-link btn btn-outline-warning active my-2 my-sm-0" href="{% url 'vessel' %}">Vessels</a>
+            <a class="nav-item nav-link btn btn-outline-warning my-2 my-sm-0" href="{% url 'vessel' %}">Vessels</a>
         </div>
         <div class="navbar-nav ms-auto nav1">
             {% if user.is_authenticated %}

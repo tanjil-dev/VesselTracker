@@ -9,19 +9,19 @@ strike {
     font-family: 'Montserrat', sans-serif;
 
 }
+nav.navbar.navbar-expand-lg.navbar-light{
+padding: 0px;
+margin:0px;
+}
 .nav-link{
     margin-right: 10px;
+    padding: 13px
 }
 .navbar-brand{
     margin-left: 20px;
 }
 .nav1{
     margin-right: 20px;
-}
-.navbar-light{
-height: 50px;
-margin:0px;
-padding:0px;
 }
 .account-img {
   height: 125px;
