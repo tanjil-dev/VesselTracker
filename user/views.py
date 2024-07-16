@@ -69,12 +69,13 @@ def Signup(request):
                 form.save()
                 user = form.cleaned_data['username']
                 messages.success(request, 'Account registered for '+ user)
-                return redirect('home')
+                return redirect('login')
         context = {
             'form': form
         }
         return render(request, template_name=template, context=context)
 
+@login_required(login_url='login')
 def LogoutUser(request):
     if request.user.is_authenticated:
         logout(request)
