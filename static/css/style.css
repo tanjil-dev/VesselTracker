@@ -95,7 +95,7 @@ footer .p-3{
 			width: 350px;
 			margin-top: 100px;
 			margin-bottom: auto;
-			background: #31a3e0;
+			background: #FAE392;
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -113,11 +113,11 @@ footer .p-3{
 		}
 
 		#form-title{
-			color: #fff;
+			color: rgba(0, 0, 0, 0.7);
 		}
 		.login_btn {
 			width: 100%;
-			background: #005C78 !important;
+			background: #00aae1 !important;
 			color: white !important;
 		}
 		.login_btn:focus {
@@ -138,15 +138,9 @@ footer .p-3{
 			box-shadow: none !important;
 			outline: 0px !important;
 		}
-		#messages{
-			background-color: #006989;
-			color: #fff;
-			padding: 10px;
-			margin-top: 10px;
-		}
 
 a.ml-2{
-color: white;
+color: black;
 }
 
 
@@ -172,6 +166,6 @@ color: white;
 }
 
 .card-profile {
-    max-width: 600px; /* Adjust as needed */
+    max-width: 600px;
     margin: auto;
 }
