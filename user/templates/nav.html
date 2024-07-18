@@ -8,7 +8,7 @@
     </button>
     <div class="navbar-collapse collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link btn btn-outline-warning my-2 my-sm-0" href="{% url 'home' %}">Voyages</a>
+            <a class="nav-item nav-link btn btn-outline-warning my-2 my-sm-0" href="{% url 'voyage' %}">Voyages</a>
         </div>
         <div class="navbar-nav">
             <a class="nav-item nav-link btn btn-outline-warning my-2 my-sm-0" href="{% url 'vessel' %}">Vessels</a>
@@ -16,10 +16,7 @@
         <div class="navbar-nav ms-auto nav1">
             {% if user.is_authenticated %}
             <div class="dropdown">
-                <button class="btn btn-outline-warning active dropdown-toggle" type="button" id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                    {{request.user}}</a>
-                </button>
+                <button class="btn btn-outline-warning active dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">{{request.user}}</button>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
                     <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
