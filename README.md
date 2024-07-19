@@ -1,9 +1,9 @@
 # VesselTracker 
 - Track vessel and get voyage duration API.
-- Parcel Tracking with Email and App Notification API.
-- Future implementation: 
+- Under development: 
   - Login/Signup feature with user role based authentication.
   - UI implementation of whole project.
+  - Parcel Tracking with Email.
 
 ## Project Setup
 ### Clone the repository & enter inside the project directory

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+{% load custom_filters %}
+<br>
+<div class="container">
+    <div class="row justify-content-center text-center">
+        <div class="col-md-12">
+            <div class="card card-profile">
+                <div class="card-body">
+                    <h2 class="card-title">{{ d.vessel }}</h2>
+                    <p class="card-text"><small class="text-muted">Departure date {{ d.start_time }} / Arrival date {{ d.end_time }}</small></p>
+                    <h4 class="card-text">Departure Location: <small class="text-primary">{{ d.start_location }}</small>
+                    </h4>
+                    <h4 class="card-text">Arrival Location: <small class="text-primary">{{ d.end_location }}</small>
+                    </h4>
+                    {% if d.end_time|is_past %}
+                    <h4 class="card-text"><small class="text-primary">Vessel Arrived</small></h4>
+                    {% else %}
+                    <h4 class="card-text">Departed <small class="text-primary">{{ d.start_time | timesince }}</small>
+                        ago</h4>
+                    <h4 class="card-text">Vessel will arrive in <small class="text-primary">{{ d.end_time | timeuntil }}</small></h4>
+                    {% endif %}
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+{% endblock content %}
