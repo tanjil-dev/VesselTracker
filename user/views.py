@@ -20,6 +20,12 @@ class VesselListView(ListView):
     context_object_name = 'data'
     ordering = ['-created_at']
 
+class ParcelListView(ListView):
+    model = Parcel
+    template_name = 'user/parcel.html'
+    context_object_name = 'data'
+    ordering = ['-id']
+
 class VoyageDetailView(View):
     template = 'user/voyage_detail.html'
     data = None

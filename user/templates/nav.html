@@ -17,7 +17,7 @@
             <a class="nav-item nav-link btn btn-outline-primary" href="{% url 'vessel' %}">Vessels</a>
         </div>
         <div class="navbar-nav">
-            <a class="nav-item nav-link btn btn-outline-primary" href="#">Parcels</a>
+            <a class="nav-item nav-link btn btn-outline-primary" href="{% url 'parcel' %}">Parcels</a>
         </div>
         <div class="navbar-nav ms-auto nav1">
             {% if user.is_authenticated %}
