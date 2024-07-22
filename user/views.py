@@ -47,6 +47,16 @@ class VesselDetailView(View):
         }
         return render(request, template_name=self.template, context=context)
 
+class ParcelDetailView(View):
+    template = 'user/parcel_detail.html'
+    data = None
+    def get(self, request, pk):
+        self.data = Parcel.objects.get(id=pk)
+        context = {
+            'data': self.data
+        }
+        return render(request, template_name=self.template, context=context)
+
 def Login(request):
     if request.user.is_authenticated:
         return redirect('home')
