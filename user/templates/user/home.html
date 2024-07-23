@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card card-profile">
+                <div class="card-body">
+                    {% for message in messages %}
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        <strong>{{ message }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %}
+                    <div class="media text-center">
+                        <br>
+                        <h2 class="text-primary">Welcome to Vessel Tracker!</h2>
+                        <br>
+                        <div class="media-body">
+                            <a class="btn btn-outline-primary btn-lg" type="button" href="{% url 'vessel' %}">Vessels</a>
+                            <a class="btn btn-outline-primary btn-lg" type="button" href="{% url 'voyage' %}">Voyages</a>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+{% endblock content %}

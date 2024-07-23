@@ -11,13 +11,11 @@ GENDER_CHOICES = (
 
 class Parcel(models.Model):
     transaction_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    voyage = models.ForeignKey(Voyage, on_delete=models.CASCADE, related_name='parcels')
+    voyage = models.ForeignKey(Voyage, on_delete=models.CASCADE)
     description = models.TextField(blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     received = models.BooleanField(default=False)
 
-    def __str__(self):
-        return self.transaction_id
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -30,8 +28,9 @@ class Profile(models.Model):
 
     def save(self):
         super().save()
-        image = Image.open(self.image.path)
-        if image.height > 300 or image.width > 300:
-            output_size = (300, 300)
-            image.thumbnail(output_size)
-            image.save(self.image.path)
+        if Image:
+            image = Image.open(self.image.path)
+            if image.height > 300 or image.width > 300:
+                output_size = (300, 300)
+                image.thumbnail(output_size)
+                image.save(self.image.path)

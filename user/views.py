@@ -1,30 +1,67 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.views.generic import ListView, TemplateView
+from django.views.generic import ListView, TemplateView, View
 from django.contrib.auth import authenticate, login as auth_login, logout
 from VesselAPIs.models import *
 from user.forms import *
 
 class HomeView(TemplateView):
-    template_name = 'home.html'
+    template_name = 'user/home.html'
 class VoyageListView(ListView):
     model = Voyage
-    template_name = 'voyage.html'
+    template_name = 'user/voyage.html'
     context_object_name = 'data'
     ordering = ['-start_time']
 
 class VesselListView(ListView):
     model = Vessel
-    template_name = 'vessel.html'
+    template_name = 'user/vessel.html'
     context_object_name = 'data'
     ordering = ['-created_at']
+
+class ParcelListView(ListView):
+    model = Parcel
+    template_name = 'user/parcel.html'
+    context_object_name = 'data'
+    ordering = ['-id']
+
+class VoyageDetailView(View):
+    template = 'user/voyage_detail.html'
+    data = None
+    def get(self, request, pk):
+        self.data = Voyage.objects.get(id=pk)
+        context = {
+            'data': self.data
+        }
+        return render(request, template_name=self.template, context=context)
+
+class VesselDetailView(View):
+    template = 'user/vessel_detail.html'
+    data = None
+
+    def get(self, request, pk):
+        self.data = Vessel.objects.get(id=pk)
+        context = {
+            'data': self.data
+        }
+        return render(request, template_name=self.template, context=context)
+
+class ParcelDetailView(View):
+    template = 'user/parcel_detail.html'
+    data = None
+    def get(self, request, pk):
+        self.data = Parcel.objects.get(id=pk)
+        context = {
+            'data': self.data
+        }
+        return render(request, template_name=self.template, context=context)
 
 def Login(request):
     if request.user.is_authenticated:
         return redirect('home')
     else:
-        template = 'login.html'
+        template = 'auth/login.html'
         if request.method == 'POST':
             username = request.POST.get('username')
             password = request.POST.get('password')
@@ -43,7 +80,7 @@ def Signup(request):
     if request.user.is_authenticated:
         return redirect('home')
     else:
-        template = 'signup.html'
+        template = 'auth/signup.html'
         form = RegistrationForm()
         if request.method == "POST":
             form = RegistrationForm(request.POST)
@@ -62,7 +99,7 @@ def LogoutUser(request):
     if request.user.is_authenticated:
         logout(request)
         messages.success(request, 'You are logged out!')
-        return redirect('login')
+        return redirect('home')
 
 @login_required(login_url='login')
 def profile(request):
@@ -82,4 +119,4 @@ def profile(request):
         'form1': user_form,
         'form2': profile_form
     }
-    return render(request, template_name='profile.html', context=context)
+    return render(request, template_name='user/profile.html', context=context)
