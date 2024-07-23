@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.views.generic import ListView, TemplateView, DetailView, View
+from django.views.generic import ListView, TemplateView, View
 from django.contrib.auth import authenticate, login as auth_login, logout
 from VesselAPIs.models import *
 from user.forms import *

@@ -4,6 +4,8 @@
   - Login/Signup feature with user role based authentication.
   - UI implementation of whole project.
   - Parcel Tracking with Email.
+  - Dockerize this project and upload at dockerhub repository
+  - CI/CD pipeline with GitHub action
 
 ## Project Setup
 ### Clone the repository & enter inside the project directory
@@ -62,7 +64,7 @@ touch .env
 - Please put the variable values for database credentials and local directory path etc.
 
 ## Thank you!
-Thank you for checking out this project! If you have any questions, feel free to open an issue or contact me directly. I hope you find this project helpful and look forward to your contributions.
+Thank you for checking out this project! If you have any questions, feel free to open an issue or contact me directly.
 - **Email:** tanzil.ovi578@gmail.com
 
 
