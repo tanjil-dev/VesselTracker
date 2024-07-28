@@ -120,6 +120,3 @@ def profile(request):
         'form2': profile_form
     }
     return render(request, template_name='user/profile.html', context=context)
-
-def parcel(request):
-    return render(request, template_name='user/profile.html')
