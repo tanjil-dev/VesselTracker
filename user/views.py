@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.views.generic import ListView, TemplateView, View
 from django.contrib.auth import authenticate, login as auth_login, logout
@@ -20,11 +21,14 @@ class VesselListView(ListView):
     context_object_name = 'data'
     ordering = ['-created_at']
 
-class ParcelListView(ListView):
+class ParcelListView(LoginRequiredMixin, ListView):
     model = Parcel
     template_name = 'user/parcel.html'
     context_object_name = 'data'
     ordering = ['-id']
+    login_url = '/login/'
+    def get_queryset(self):
+        return Parcel.objects.filter(user=self.request.user).order_by('-id')
 
 class VoyageDetailView(View):
     template = 'user/voyage_detail.html'
@@ -50,6 +54,7 @@ class VesselDetailView(View):
 class ParcelDetailView(View):
     template = 'user/parcel_detail.html'
     data = None
+    login_url = '/login/'
     def get(self, request, pk):
         self.data = Parcel.objects.get(id=pk)
         context = {

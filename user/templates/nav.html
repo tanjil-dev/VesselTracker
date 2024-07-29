@@ -16,9 +16,11 @@
         <div class="navbar-nav">
             <a class="nav-item nav-link btn btn-outline-info" href="{% url 'vessel' %}">Vessels</a>
         </div>
+        {% if user.is_authenticated %}
         <div class="navbar-nav">
             <a class="nav-item nav-link btn btn-outline-info" href="{% url 'parcel' %}">Parcels</a>
         </div>
+        {% endif %}
         <div class="navbar-nav ms-auto nav1">
             {% if user.is_authenticated %}
             <div class="dropdown">
