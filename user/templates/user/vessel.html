@@ -7,7 +7,7 @@
         {% for d in data %}
         <div class="card card-profile">
             <div class="card-body">
-                <h2 class="card-title">{{ d.name }}</h2>
+                <h2 class="card-title"><a href="{% url 'vessel-detail' pk=d.id %}">{{ d.name }}</a></h2>
                 <p class="card-text"><small class="text-muted">Last update date {{ d.updated_at }}</small></p>
                 <h4 class="card-text">Owner ID: <small class="text-primary">{{ d.owner_id }}</small></h4>
                 <h4 class="card-text">NACCS CODE: <small class="text-primary">{{ d.naccs_code }}</small></h4>
