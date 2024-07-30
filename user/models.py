@@ -9,6 +9,13 @@ GENDER_CHOICES = (
     ('Female', 'Female'),
 )
 
+RECEIVE = (
+    (1, 'SHIPPING INITIATED'),
+    (2, 'ON THE WAY'),
+    (3, 'READY TO RECEIVE'),
+    (4, 'RECEIVED'),
+)
+
 class Parcel(models.Model):
     transaction_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     voyage = models.ForeignKey(Voyage, on_delete=models.CASCADE)
@@ -26,8 +33,8 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
-    def save(self):
-        super().save()
+    def save(self, *args, **kwargs):
+        super(Profile, self).save(*args, **kwargs)
         if Image:
             image = Image.open(self.image.path)
             if image.height > 300 or image.width > 300:
