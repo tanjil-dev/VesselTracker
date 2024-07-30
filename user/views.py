@@ -26,7 +26,7 @@ class ParcelListView(LoginRequiredMixin, ListView):
     template_name = 'user/parcel.html'
     context_object_name = 'data'
     ordering = ['-id']
-    login_url = '/login/'
+    login_url = 'login'
     def get_queryset(self):
         return Parcel.objects.filter(user=self.request.user).order_by('-id')
 
@@ -54,7 +54,7 @@ class VesselDetailView(View):
 class ParcelDetailView(View):
     template = 'user/parcel_detail.html'
     data = None
-    login_url = '/login/'
+    login_url = 'login'
     def get(self, request, pk):
         self.data = Parcel.objects.get(id=pk)
         context = {

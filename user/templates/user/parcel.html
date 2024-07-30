@@ -16,6 +16,13 @@
         </div>
         <br>
         {% endfor %}
+        {% if not data %}
+        <div class="card card-profile">
+            <div class="card-body">
+                <h2 class="card-title">You don't have any registered parcel!</h2>
+            </div>
+        </div>
+        {% endif %}
     </div>
     </div>
 </div>
