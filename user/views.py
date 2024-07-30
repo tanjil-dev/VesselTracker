@@ -7,6 +7,9 @@ from django.contrib.auth import authenticate, login as auth_login, logout
 from VesselAPIs.models import *
 from user.forms import *
 
+
+def custom_404(request, exception):
+    return render(request, 'user/404.html', {}, status=404)
 class HomeView(TemplateView):
     template_name = 'user/home.html'
 class VoyageListView(ListView):
