@@ -9,7 +9,7 @@
             <div class="card-body">
                 <h2 class="card-title"><a href="{% url 'parcel-detail' pk=d.id %}">{{ d.transaction_id }}</a></h2>
                 <p class="card-text"><small class="text-muted">Voyage Departure date {{ d.voyage.start_time }}</small></p>
-                <h4 class="card-text">Description: <small class="text-primary">{{ d.description }}</small></h4>
+                <h4 class="card-text">Description<small class="text-primary">{{ d.description|linebreaks }}</small></h4>
                 <h4 class="card-text">Username: <small class="text-primary">{{ d.user.username }}</small></h4>
                 <h4 class="card-text">Receive Status: <small class="text-primary">{{ d.received }}</small></h4>
             </div>
