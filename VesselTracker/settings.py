@@ -18,7 +18,7 @@ try:
 except KeyError as e:
     raise RuntimeError("Could not find a SECRET_KEY in environment") from e
 
-DEBUG = os.getenv('DEBUG')
+DEBUG = (os.getenv('DEBUG', 'False') == 'True')
 
 ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS')]
 
