@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from django.views.generic import ListView, TemplateView, View
-from django.contrib.auth import authenticate, login as auth_login, logout
+from django.contrib.auth import authenticate, login as auth_login, logout, update_session_auth_hash
 from VesselAPIs.models import *
 from user.forms import *
 
@@ -77,6 +78,7 @@ def Login(request):
 
             if user is not None:
                 auth_login(request, user)
+                messages.success(request, 'Your have login successfully!')
                 return redirect('home')
             else:
                 messages.info(request, "Username or Password is incorrect")
@@ -108,6 +110,22 @@ def LogoutUser(request):
         logout(request)
         messages.success(request, 'You are logged out!')
         return redirect('home')
+
+@login_required(login_url='login')
+def changePassword(request):
+    if request.POST:
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            messages.success(request, 'Your Password Changed Successfully!')
+            return redirect('home')
+    else:
+        form = PasswordChangeForm(user=request.user)
+    context = {
+        'form': form
+    }
+    return render(request, template_name="auth/password_change.html", context=context)
 
 @login_required(login_url='login')
 def profile(request):
