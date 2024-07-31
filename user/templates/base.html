@@ -9,11 +9,13 @@
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 {% include "nav.html" %}
 {% block content %}{% endblock content %}
 {% include 'footer.html' %}
+<script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
