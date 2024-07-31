@@ -35,8 +35,6 @@ INSTALLED_APPS = [
     'VesselAPIs.apps.VesselapisConfig',
     'rest_framework',
     'bootstrap5',
-    "crispy_forms",
-    "crispy_bootstrap5",
 ]
 
 MIDDLEWARE = [
@@ -47,6 +45,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'user.middlewares.AuthenticatedUserRedirectMiddleware',
 ]
 
 ROOT_URLCONF = 'VesselTracker.urls'

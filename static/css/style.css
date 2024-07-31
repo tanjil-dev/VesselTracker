@@ -169,3 +169,7 @@ color: black;
     max-width: 600px;
     margin: auto;
 }
+
+span.input-group-text{
+    height:40px;
+}
