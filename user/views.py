@@ -72,9 +72,9 @@ def Login(request):
     else:
         template = 'auth/login.html'
         if request.method == 'POST':
-            username = request.POST.get('username')
+            email = request.POST.get('email')
             password = request.POST.get('password')
-            user = authenticate(request, username=username, password=password)
+            user = authenticate(request, email=email, password=password)
 
             if user is not None:
                 auth_login(request, user)
@@ -96,8 +96,7 @@ def Signup(request):
             form = RegistrationForm(request.POST)
             if form.is_valid():
                 form.save()
-                user = form.cleaned_data['username']
-                messages.success(request, 'Account registered for '+ user)
+                messages.success(request, 'Account registration complete!')
                 return redirect('login')
         context = {
             'form': form
