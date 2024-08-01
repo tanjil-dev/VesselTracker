@@ -34,7 +34,9 @@ INSTALLED_APPS = [
     'user.apps.UserConfig',
     'VesselAPIs.apps.VesselapisConfig',
     'rest_framework',
+    'crispy_forms',
     'bootstrap5',
+    "crispy_bootstrap5",
 ]
 
 MIDDLEWARE = [
