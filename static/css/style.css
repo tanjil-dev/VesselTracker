@@ -143,6 +143,9 @@ color: black;
 .card-title a{
  text-decoration: none;
 }
+.decor{
+    text-decoration: none;
+}
 
 .dropdown-menu {
         max-height: 300px;
