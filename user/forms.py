@@ -4,13 +4,11 @@ from django import forms
 from user.models import *
 
 class RegistrationForm(UserCreationForm):
-    email = forms.EmailField()
     class Meta:
         model = get_user_model()
         fields = ['email', 'password1', 'password2']
 
 class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
     class Meta:
         model = get_user_model()
         fields = ['email', 'first_name', 'last_name']
