@@ -1,26 +1,16 @@
 import os
+import dj_database_url
 from dotenv import load_dotenv
-
 from pathlib import Path
 from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env_path = os.path.join(os.path.dirname(__file__), '.env')
+SECRET_KEY = "iz%2$w@2hasl+pg9xek4x8d&b3v%q1=!j!cuxkcb#)4qzc4(=7"
 
-try:
-    load_dotenv(dotenv_path=env_path, verbose=True, override=True, encoding='utf_8')
-except UserWarning:
-    raise ImproperlyConfigured('.env file not found. Did you forget to add one?')
+DEBUG = True
 
-try:
-    SECRET_KEY = os.getenv("SECRET_KEY")
-except KeyError as e:
-    raise RuntimeError("Could not find a SECRET_KEY in environment") from e
-
-DEBUG = (os.getenv('DEBUG', 'False') == 'True')
-
-ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS')]
+ALLOWED_HOSTS = ['0.0.0.0', '.vercel.app', '.now.sh']
 
 
 
@@ -73,14 +63,7 @@ WSGI_APPLICATION = 'VesselTracker.wsgi.application'
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DEFAULT_DB_NAME'),
-        'HOST': os.environ.get('DEFAULT_DB_HOST'),
-        'USER': os.environ.get('DEFAULT_DB_USER'),
-        'PASSWORD': os.environ.get('DEFAULT_DB_PASSWORD'),
-        'PORT': os.environ.get('DEFAULT_DB_PORT')
-    }
+    'default': dj_database_url.parse("postgresql://postgres:tXiLWhYqYBWuSZXiIaSxdZrktYiLmpnW@viaduct.proxy.rlwy.net:16551/railway")
 }
 
 
@@ -123,8 +106,11 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.getenv("STATIC_ROOT")
-STATICFILES_DIRS = [BASE_DIR / "static"]
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -137,7 +123,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 AUTH_USER_MODEL = 'user.CustomUser'
 
-#email
+#Gmail
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
