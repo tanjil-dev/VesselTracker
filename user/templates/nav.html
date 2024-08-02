@@ -8,17 +8,17 @@
     </button>
     <div class="navbar-collapse collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link btn btn-outline-info" href="{% url 'home' %}">Home</a>
+            <a class="nav-item nav-link btn btn-outline-info" href="{% url 'home' %}"><i class="fa-solid fa-house"></i> Home</a>
         </div>
         <div class="navbar-nav">
-            <a class="nav-item nav-link btn btn-outline-info" href="{% url 'voyage' %}">Voyages</a>
+            <a class="nav-item nav-link btn btn-outline-info" href="{% url 'voyage' %}"><i class="fa-solid fa-hourglass-half"></i> Voyages</a>
         </div>
         <div class="navbar-nav">
-            <a class="nav-item nav-link btn btn-outline-info" href="{% url 'vessel' %}">Vessels</a>
+            <a class="nav-item nav-link btn btn-outline-info" href="{% url 'vessel' %}"><i class="fa-solid fa-ship"></i> Vessels</a>
         </div>
         {% if user.is_authenticated %}
         <div class="navbar-nav">
-            <a class="nav-item nav-link btn btn-outline-info" href="{% url 'parcel' %}">Parcels</a>
+            <a class="nav-item nav-link btn btn-outline-info" href="{% url 'parcel' %}"><i class="fa-solid fa-gift"></i> Parcels</a>
         </div>
         {% endif %}
         <div class="navbar-nav ms-auto nav1">
@@ -26,13 +26,13 @@
             <div class="dropdown">
                 <button class="btn btn-outline-info active dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i> {{request.user.first_name}} {{request.user.last_name}}</button>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
-                    <li><a class="dropdown-item" href="{% url 'change_password' %}">Change Password</a></li>
-                    <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                    <li><a class="dropdown-item" href="{% url 'profile' %}"><i class="fa-solid fa-id-card"></i> Profile</a></li>
+                    <li><a class="dropdown-item" href="{% url 'change_password' %}"><i class="fa-solid fa-lock"></i> Change Password</a></li>
+                    <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
                 </ul>
             </div>
             {% else %}
-            <a class="nav-item nav-link btn btn-outline-info" href="{% url 'login' %}">Login</a>
+            <a class="nav-item nav-link btn btn-outline-info" href="{% url 'login' %}"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
             {% endif %}
         </div>
     </div>
