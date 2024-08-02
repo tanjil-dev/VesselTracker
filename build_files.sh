@@ -4,7 +4,7 @@
 sudo apt update
 sudo apt install -y libpq-dev python3-dev
 
-# Install dependencies
+# Install Python dependencies
 pip install -r requirements.txt
 
 # Collect static files

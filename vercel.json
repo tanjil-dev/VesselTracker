@@ -1,27 +1,33 @@
 {
-  "version": 2,
   "builds": [
-    {
-      "src": "VesselTracker/wsgi.py",
-      "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb", "runtime": "python3.6" }
-    },
     {
       "src": "build_files.sh",
       "use": "@vercel/static-build",
       "config": {
         "distDir": "staticfiles_build"
       }
+    },
+    {
+      "src": "manage.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxDuration": 10
+      }
     }
   ],
   "routes": [
     {
       "src": "/static/(.*)",
-      "dest": "/static/$1"
+      "dest": "/staticfiles_build/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "VesselTracker/wsgi.py"
+      "dest": "/manage.py"
     }
-  ]
+  ],
+  "functions": {
+    "api/*.py": {
+      "runtime": "vercel-python@0.5.0"
+    }
+  }
 }
