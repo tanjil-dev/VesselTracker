@@ -95,9 +95,12 @@ def Signup(request):
         if request.method == "POST":
             form = RegistrationForm(request.POST)
             if form.is_valid():
-                form.save()
-                messages.success(request, 'Account registration complete!')
-                return redirect('login')
+                user = form.save(commit=False)
+                user.is_active=False
+                user.save()
+                email = form.cleaned_data.get('email')
+                messages.success(request, f'Account activation email sent to {email}')
+                return redirect('home')
         context = {
             'form': form
         }
