@@ -22,6 +22,6 @@ document.addEventListener("DOMContentLoaded", function() {
             alert.classList.remove('show');
             alert.classList.add('hide'); // Assuming you have a CSS class to hide elements
             // Alternatively, you can use alert.style.display = 'none'; to hide the element directly
-        }, 5000); // 5000 milliseconds = 5 seconds
+        }, 30000); // 5000 milliseconds = 5 seconds
     });
 });
