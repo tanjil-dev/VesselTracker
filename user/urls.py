@@ -4,6 +4,7 @@ from user.views import *
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
+    path('dashboard/', Dashboard.as_view(), name='dashboard'),
     path('voyage/', VoyageListView.as_view(), name='voyage'),
     path('voyage/<int:pk>/', VoyageDetailView.as_view(), name='voyage-detail'),
     path('vessel/', VesselListView.as_view(), name='vessel'),
