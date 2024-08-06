@@ -54,8 +54,8 @@ def custom_404(request, exception):
 class HomeView(TemplateView):
     template_name = 'user/home.html'
 
-class AccountActivation(TemplateView):
-    template_name = 'auth/account_activation.html'
+class Dashboard(TemplateView):
+    template_name = 'admin/dashboard.html'
 class VoyageListView(ListView):
     model = Voyage
     template_name = 'user/voyage.html'
