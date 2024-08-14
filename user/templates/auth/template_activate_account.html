@@ -1,5 +1,5 @@
 {% autoescape off %}
-Dear {{ "User" if user == " " else user }},
+Dear {{ user }},
 Please click on the link below to confirm your registration:
 
 {{ protocol }}://{{ domain }}{% url 'activate' uidb64=uid token=token %}
