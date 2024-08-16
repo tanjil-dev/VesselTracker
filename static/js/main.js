@@ -50,3 +50,9 @@ $(document).ready(()=>{
    });
 
 });
+
+$(document).ready(function () {
+table = $('#myTable1').DataTable();
+table = $('#myTable2').DataTable();
+table = $('#myTable3').DataTable();
+});
