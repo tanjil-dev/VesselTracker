@@ -1,6 +1,5 @@
 import os
 from dotenv import load_dotenv
-
 from pathlib import Path
 from django.core.exceptions import ImproperlyConfigured
 
