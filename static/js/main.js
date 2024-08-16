@@ -51,8 +51,59 @@ $(document).ready(()=>{
 
 });
 
-$(document).ready(function () {
-table = $('#myTable1').DataTable();
+
 table = $('#myTable2').DataTable();
 table = $('#myTable3').DataTable();
+
+var base_url = "http://0.0.0.0:8000/api/v1";
+
+$(document).ready(function () {
+    // CSRF token setup
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    var csrftoken = getCookie('csrftoken');
+
+var table = $('#myTable1').DataTable({
+        autoWidth: false,
+        scrollX: true,
+        pageLength: 5,
+        ajax: {
+        url: `${base_url}/vessel/`,
+        type: "GET",
+        cache: true,
+        success: function (response) {
+            table.clear().rows.add(response.data).draw();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.error('Error loading data:', errorThrown);
+        }
+    },
+        columns: [
+            { data: 'name' },
+            { data: 'owner_id' },
+            { data: 'naccs_code' },
+            {
+                data: null,
+                className: "center",
+                defaultContent: '<div class="btn-group">' +
+                    '<button class="btn btn-sm btn-secondary edit-btn">Update</button>' +
+                    '<button class="btn btn-sm btn-dark delete-btn">Delete</button>' +
+                    '</div>',
+                orderable: false,
+            }
+        ],
+    });
 });
