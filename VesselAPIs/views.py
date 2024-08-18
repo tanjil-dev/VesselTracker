@@ -54,5 +54,8 @@ def data_upload(request):
     for d in df.values:
         vessel = Vessel(name=d[1], owner_id=d[3], naccs_code=d[2])
         vessels.append(vessel)
-    Vessel.objects.bulk_create(vessels)
-    return HttpResponse('Excel data uploaded Suceesfully!')
+    try:
+        Vessel.objects.bulk_create(vessels)
+    except:
+        return HttpResponse('Excel data upload unsuccessful!')
+    return HttpResponse('Excel data uploaded Successfully!')
