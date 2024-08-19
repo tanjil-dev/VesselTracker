@@ -106,4 +106,76 @@ var table = $('#myTable1').DataTable({
             }
         ],
     });
+
+
+    var selectedRowData;
+    var deleteRowData;
+
+    $('#myTable1 tbody').on('click', 'button.edit-btn', function () {
+        selectedRowData = table.row($(this).parents('tr')).data();
+        $('#name').val(selectedRowData.name);
+        $('#owner_id').val(selectedRowData.owner_id);
+        $('#naccs_code').val(selectedRowData.naccs_code);
+        $('#editModal').modal('show');
+    });
+
+    $('#saveChangesBtn').on('click', function () {
+        var name = $('#name').val();
+        var owner_id = $('#owner_id').val();
+        var naccs_code = $('#naccs_code').val();
+
+        if (name && owner_id && naccs_code) {
+            $.ajax({
+                url: `${base_url}/vessel/${selectedRowData.id}/`,
+                type: 'PUT',
+                headers: { 'X-CSRFToken': csrftoken },
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    name: name,
+                    owner_id: owner_id,
+                    naccs_code: naccs_code
+                }),
+                success: function () {
+                    table.ajax.reload();
+                    $('#editModal').modal('hide');
+                },
+                error: function (error) {
+                    var x;
+                    for (let value of Object.values(error.responseJSON)){
+                            console.log(typeof(value[0]));
+                            x = value[0] + '\n';
+                        }
+                        alert(x);
+                }
+            });
+        } else {
+            alert("Please fill out all fields before saving.");
+        }
+    });
+
+
+    $('#myTable1 tbody').on('click', 'button.delete-btn', function () {
+        deleteRowData = table.row($(this).parents('tr')).data();
+        $('#deleteModal').modal('show');
+    });
+
+    $('#confirmDeleteBtn').on('click', function () {
+        if (deleteRowData) {
+            $.ajax({
+                url: `${base_url}/vessel/${deleteRowData.id}/`,
+                type: 'DELETE',
+                headers: { 'X-CSRFToken': csrftoken },
+                success: function () {
+                    table.ajax.reload();
+                    $('#deleteModal').modal('hide');
+                },
+                error: function (error) {
+                    $('#deleteModal').modal('hide');
+                    document.getElementById('alert').innerHTML = 'An error occurred while Deleting data.';
+                    setTimeout(function () { document.getElementById('alert').innerHTML = ''; }, 5000);
+                }
+            });
+        }
+    });
+
 });
