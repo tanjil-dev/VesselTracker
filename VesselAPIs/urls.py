@@ -6,7 +6,5 @@ urlpatterns = [
     path('vessel/', VesselList.as_view(), name='vessel-list-create'),
     path('voyage/<int:pk>/', VoyageDetail.as_view(), name='voyage-list-update-delete'),
     path('voyage/', VoyagelList.as_view(), name='voyage-list-create'),
-    path('parcel/<int:pk>/', ParcelDetail.as_view(), name='parcel-list-update-delete'),
-    path('parcel/', ParcelList.as_view(), name='parcel-list-create'),
     path('upload-excel-data/', data_upload, name='upload-excel-data'),
 ]

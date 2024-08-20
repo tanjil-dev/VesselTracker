@@ -12,13 +12,6 @@ GENDER_CHOICES = (
     ('Female', 'Female'),
 )
 
-RECEIVE = (
-    (1, 'SHIPPING INITIATED'),
-    (2, 'ON THE WAY'),
-    (3, 'READY TO RECEIVE'),
-    (4, 'RECEIVED'),
-)
-
 class CustomUserManager(BaseUserManager):
     """Define a model manager for User model with no username field."""
 
@@ -58,13 +51,6 @@ class CustomUser(AbstractUser):
     REQUIRED_FIELDS = []
 
     objects = CustomUserManager()
-
-class Parcel(models.Model):
-    transaction_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    voyage = models.ForeignKey(Voyage, on_delete=models.CASCADE)
-    description = models.TextField(blank=True, null=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    received = models.BooleanField(default=False)
 
 
 class Profile(models.Model):

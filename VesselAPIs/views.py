@@ -31,16 +31,6 @@ class VoyageDetail(RetrieveUpdateDestroyAPIView):
     queryset = Voyage.objects.all()
     serializer_class = VoyageSerializer
 
-class ParcelList(ListCreateAPIView):
-    queryset = Parcel.objects.all()
-    serializer_class = ParcelSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['voyage', 'description', 'user', 'received']
-
-class ParcelDetail(RetrieveUpdateDestroyAPIView):
-    queryset = Parcel.objects.all()
-    serializer_class = ParcelSerializer
-
 def data_upload(request):
     vessels = []
     directory_path = os.getenv('STATIC_ROOT') + '/senpaku_n.xlsx'

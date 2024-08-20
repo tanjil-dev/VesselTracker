@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from django.views.generic import ListView, TemplateView, View
@@ -68,14 +67,6 @@ class VesselListView(ListView):
     context_object_name = 'data'
     ordering = ['-created_at']
 
-class ParcelListView(LoginRequiredMixin, ListView):
-    model = Parcel
-    template_name = 'user/parcel.html'
-    context_object_name = 'data'
-    ordering = ['-id']
-    login_url = 'login'
-    def get_queryset(self):
-        return Parcel.objects.filter(user=self.request.user).order_by('-id')
 
 class VoyageDetailView(View):
     template = 'user/voyage_detail.html'
@@ -98,16 +89,6 @@ class VesselDetailView(View):
         }
         return render(request, template_name=self.template, context=context)
 
-class ParcelDetailView(View):
-    template = 'user/parcel_detail.html'
-    data = None
-    login_url = 'login'
-    def get(self, request, pk):
-        self.data = Parcel.objects.get(id=pk)
-        context = {
-            'data': self.data
-        }
-        return render(request, template_name=self.template, context=context)
 
 def Login(request):
     if request.user.is_authenticated:
