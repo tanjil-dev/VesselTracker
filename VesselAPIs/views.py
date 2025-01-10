@@ -31,7 +31,7 @@ class VoyageDetail(RetrieveUpdateDestroyAPIView):
     queryset = Voyage.objects.all()
     serializer_class = VoyageSerializer
 
-def data_upload(request):
+def vessel_data_upload(request):
     vessels = []
     directory_path = os.getenv('STATIC_ROOT') + '/senpaku_n.xlsx'
     all_sheets_df = pd.read_excel(directory_path, sheet_name=None, engine='openpyxl')
@@ -48,4 +48,7 @@ def data_upload(request):
         Vessel.objects.bulk_create(vessels)
     except:
         return HttpResponse('Excel data upload unsuccessful!')
+    return HttpResponse('Excel data uploaded Successfully!')
+
+def voyage_data_upload(request):
     return HttpResponse('Excel data uploaded Successfully!')
